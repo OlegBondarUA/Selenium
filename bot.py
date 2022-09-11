@@ -1,11 +1,11 @@
 import datetime
-
 import requests
+
 from pprint import pprint
 from config import open_weather_token
 
 
-def get_weather(city, open_weather_token):
+def get_weather(city, open_weather_toke):
 
     code_to_smile = {
         'Clear': 'Ясно \U00002600',
@@ -18,8 +18,8 @@ def get_weather(city, open_weather_token):
 
     try:
         r = requests.get(
-            f'https://api.openweathermap.org/data/2.5/weather?q={city}'
-            f'&appid={open_weather_token}&units=metric'
+            f'https://api.openweathermap.org/data/2.5/weather?q='
+            f'{city}&appid={open_weather_toke}&units=metric'
         )
         data = r.json()
         # pprint(data)
@@ -52,7 +52,7 @@ def get_weather(city, open_weather_token):
               f'Гарного дня!')
     except Exception as ex:
         print(ex)
-        print('Перевірте назву мвста')
+        print('Перевірте назву міста')
 
 
 def main():
