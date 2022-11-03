@@ -1,0 +1,26 @@
+{
+    "1": {
+        "link": "https://www.programiz.com/python-programming",
+        "title": "Learn Python Programming - Programiz"
+    },
+    "2": {
+        "link": "https://www.w3schools.com/python/python_intro.asp",
+        "title": "Introduction to Python - W3Schools"
+    },
+    "3": {
+        "link": "https://en.wikipedia.org/wiki/Python_(programming_language)",
+        "title": "Python (programming language) - Wikipedia"
+    },
+    "4": {
+        "link": "https://www.geeksforgeeks.org/python-programming-language/",
+        "title": "Python Programming Language - GeeksforGeeks"
+    },
+    "5": {
+        "link": "https://pythonprogramming.net/",
+        "title": "Python Programming Tutorials"
+    },
+    "6": {
+        "link": "https://www.pythontutorial.net/",
+        "title": "Python Tutorial"
+    }
+}
