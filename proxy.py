@@ -2,8 +2,10 @@ import time
 
 from seleniumwire import webdriver
 from decouple import config
-login = config('LOGIN')
-password = config('PASSWORD')
+
+
+login = config('LOGIN_PROXY')
+password = config('PASSWORD_PROXY')
 
 
 proxy_options = {
@@ -12,11 +14,11 @@ proxy_options = {
     }
 }
 
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--proxy-server=138.128.91.65:8077')
+# chrome_options = webdriver.ChromeOptions()
+# chrome_options.add_argument('--proxy-server=138.128.91.65:8077')
 
 driver = webdriver.Chrome(executable_path='./chromedriver',
-                          chrome_options=chrome_options
+                          seleniumwire_options=proxy_options
                           )
 
 try:
