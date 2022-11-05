@@ -28,8 +28,8 @@ try:
     print('open url')
     time.sleep(3)
 
-    email_input = driver.find_element(By.CSS_SELECTOR, '[id="avatar-link"]')
-    email_input.click()
+    start_video = driver.find_element(By.CSS_SELECTOR, '[id="avatar-link"]')
+    start_video.click()
     print('start video')
 
     time.sleep(20)
