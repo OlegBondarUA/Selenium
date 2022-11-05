@@ -8,6 +8,8 @@ from selenium.webdriver.common.by import By
 chrome_options = webdriver.ChromeOptions()
 # option background mode
 chrome_options.add_argument('headless')
+# chrome_options.headless = True
+
 # options user-agent
 chrome_options.add_argument(
     f'user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
