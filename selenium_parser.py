@@ -8,28 +8,41 @@ chrome_options.add_argument("disable-gpu")
 driver = webdriver.Chrome(executable_path='./chromedriver',
                           chrome_options=chrome_options
                           )
-driver.implicitly_wait(5)
-driver.get('https://prom.ua/ua/Umnye-chasy-i-braslety')
 
 
 def get_url_watch():
-    item = driver.find_elements(By.CSS_SELECTOR,
-                                'div[class="l-GwW js-productad"]')
-    data = {}
+    list_ = []
 
-    for number, element in enumerate(item):
+    for page in range(1, 3, 1):
 
-        data[number + 1] = {
-            'url': element.find_element(By.CSS_SELECTOR, 'a').get_attribute('href'),
-            'title': element.find_element(By.CSS_SELECTOR, 'span').text.strip(),
-            'price': element.find_element(By.CSS_SELECTOR, 'div[class="M3v0L Qa-Dw _0-YBE mpcTk _0Jq1n"] span').text.strip().replace('\xa0', '')
-        }
-    with open('catalog_watch.json', 'w') as file:
-        json.dump(data, file, indent=4,
-                  ensure_ascii=False,
-                  separators=(',', ': '))
+        url = 'https://prom.ua/ua/Umnye-chasy-i-braslety;' + str(page)
+        driver.get(url)
+        driver.implicitly_wait(5)
+        item = driver.find_elements(By.CSS_SELECTOR, 'div[data-product-id]')
+
+        for i, element in enumerate(item):
+
+            url = element.find_element(By.CSS_SELECTOR, 'a').get_attribute('href')
+
+            list_.append({
+                'url': url,
+                'title': element.find_element(By.CSS_SELECTOR, 'a').get_attribute('title'),
+                # 'old_price': element.find_element(By.CSS_SELECTOR, 'span[data-qaid="old_price"]').get_attribute('data-qaprice'),
+                'price': element.find_element(By.CSS_SELECTOR, 'span[data-qaid="product_price"]').get_attribute('data-qaprice')
+            })
 
     driver.quit()
 
+    with open('catalog_watch.json', 'w') as file:
+        json.dump(list_, file, indent=4,
+                  ensure_ascii=False,
+                  separators=(',', ': '))
 
-get_url_watch()
+
+def main():
+
+    get_url_watch()
+
+
+if __name__ == '__main__':
+    main()
