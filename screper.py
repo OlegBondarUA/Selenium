@@ -7,11 +7,11 @@ from selenium.webdriver.common.by import By
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('headless')
-chrome_options.add_argument('window-size=1920x1080')
 chrome_options.add_argument("disable-gpu")
 driver = webdriver.Chrome(executable_path='./chromedriver',
                           chrome_options=chrome_options
                           )
+driver.maximize_window()
 
 TIME_OUT = 10
 
@@ -70,16 +70,18 @@ def worker(queue: Queue):
 def main():
     queue = Queue()
     url = 'https://kvshop.com.ua/smartfony/apple/'
-    pages = 12
+    pages = 2
 
     for page in range(1, pages + 1):
         queue.put(url + str(page))
 
-    worker_number = 10
+    worker_number = 2
 
     with ThreadPoolExecutor(max_workers=worker_number) as executor:
         for _ in range(worker_number):
             executor.submit(worker, queue)
+
+    driver.quit()
 
 
 if __name__ == '__main__':
